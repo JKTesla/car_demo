@@ -15,7 +15,7 @@ A video and screenshots of the demo can be seen in this blog post: https://www.o
 This demo has been tested on Ubuntu Xenial (16.04)
 
 * An X server
-* [Docker](https://www.docker.com/get-docker)
+* [Docker](https://docs.docker.com/v17.09/engine/installation/linux/docker-ce/ubuntu/)
 * [nvidia-docker2](https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0))
 * The current user is a member of the docker group or other group with docker execution rights.
 
