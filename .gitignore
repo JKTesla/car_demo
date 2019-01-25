@@ -1,2 +1,21 @@
 # Ignore VIM files
 .*.sw?
+
+# ignore cmake build folder
+cmake-build-*/
+
+# ignore log files
+*.log
+
+### CMake ###
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+# Executables
+*.exe
+*.out
+*.app
