@@ -300,6 +300,18 @@
     <origin xyz="-1 -2.3 0.5" rpy="0 0.05 3.14"/>
   </joint>
 
+  <link name="imu_link">
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+  </link>
+  <joint name="imu_joint" type="fixed">
+    <parent link="chassis"/>
+    <child link="imu_link"/>
+    <origin xyz="0 0 0" rpy="0 0 -1.5707"/>
+  </joint>
+
   <gazebo reference="base_link_connection">
     <disableFixedJointLumping>true</disableFixedJointLumping>
   </gazebo>
@@ -497,6 +509,17 @@
     </plugin>
   </gazebo>
 
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>imu_link</bodyName>
+      <topicName>/prius/imucalculate</topicName>
+      <serviceName>imu_service</serviceName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <updateRate>50.0</updateRate>
+    </plugin>
+  </gazebo>
+
   <gazebo reference="center_laser_link">
     <sensor name='center_laser_sensor' type='ray'>
       <ray>
@@ -591,6 +614,26 @@
       <update_rate>30</update_rate>
       <visualize>0</visualize>
     </sensor>
+  </gazebo>
+
+  <gazebo reference="imu_link">
+   <gravity>1</gravity>
+   <sensor name="imu_sensor" type="imu">
+    <always_on>1</always_on>
+    <update_rate>100</update_rate>
+    <visualize>1</visualize>
+    <topic>__default_topic__</topic>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+      <topicName>/prius/imu</topicName>
+      <bodyName>imu_link</bodyName>
+      <updateRateHZ>50.0</updateRateHZ>
+      <gaussianNoise>0.0</gaussianNoise>
+      <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 0</rpyOffset>
+      <frameName>imu_link</frameName>
+    </plugin>
+    <pose>0 0 0 0 0 0</pose>
+   </sensor>
   </gazebo>
 
   <gazebo reference="front_camera_link">

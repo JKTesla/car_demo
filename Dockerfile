@@ -19,7 +19,7 @@ RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu `lsb_release -cs` 
     ros-kinetic-fake-localization \
     ros-kinetic-joy \
  && apt-get clean
-
+clea
 
 RUN mkdir -p /tmp/workspace/src
 COPY prius_description /tmp/workspace/src/prius_description
